@@ -4,27 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Check Vero MVP</title>
-  <script type="module">
-    import { OisyAuth } from 'https://unpkg.com/oisy-sdk@latest/dist/oisy-sdk.min.js';
-
-    const oisy = new OisyAuth({
-      clientId: 'test-client-id', // replace with your real clientId
-      redirectUri: window.location.href,
-    });
-
-    window.onload = () => {
-      document.getElementById("login").onclick = async () => {
-        try {
-          await oisy.signIn();
-          document.getElementById("login-section").style.display = "none";
-          document.getElementById("demo-section").style.display = "block";
-        } catch (err) {
-          alert("Login failed or cancelled.");
-          console.error(err);
-        }
-      };
-    };
-  </script>
   <style>
     body {
       font-family: sans-serif;
@@ -49,17 +28,23 @@
       color: #1e293b;
     }
   </style>
+  <script>
+    function showDemo() {
+      document.getElementById("login-section").style.display = "none";
+      document.getElementById("demo-section").style.display = "block";
+    }
+  </script>
 </head>
 <body>
   <div id="login-section">
     <h1>✅ Check Vero Demo</h1>
-    <p>Connect your Oisy Wallet to access the live demo.</p>
-    <button id="login">Login with Oisy Wallet</button>
+    <p>Click below to view the live demo.</p>
+    <button onclick="showDemo()">View Live Demo</button>
   </div>
 
   <div id="demo-section" style="display:none;">
-    <h2>🔒 Verified Access Granted</h2>
-    <p>You are now viewing the live demo:</p>
+    <h2>🔒 Verified Access (simulated)</h2>
+    <p>You are now viewing the demo interface:</p>
     <iframe 
       src="https://callverify.preview.emergentagent.com/" 
       width="90%" 
