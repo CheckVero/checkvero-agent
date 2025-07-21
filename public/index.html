@@ -8,19 +8,28 @@
     import { OisyAuth } from 'https://unpkg.com/oisy-sdk@latest/dist/oisy-sdk.min.js';
 
     const oisy = new OisyAuth({
-      clientId: 'test-client-id', // ← replace with real clientId later
+      clientId: 'test-client-id', // replace with your real clientId
       redirectUri: window.location.href,
     });
 
     window.onload = () => {
-      document.getElementById("login").onclick = () => oisy.signIn();
+      document.getElementById("login").onclick = async () => {
+        try {
+          await oisy.signIn();
+          document.getElementById("login-section").style.display = "none";
+          document.getElementById("demo-section").style.display = "block";
+        } catch (err) {
+          alert("Login failed or cancelled.");
+          console.error(err);
+        }
+      };
     };
   </script>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 80px;
     }
     button {
       font-size: 18px;
@@ -31,14 +40,32 @@
       border-radius: 6px;
       cursor: pointer;
     }
+    iframe {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 40px;
+    }
     h1 {
       color: #1e293b;
     }
   </style>
 </head>
 <body>
-  <h1>✅ Check Vero Demo</h1>
-  <p>Connect your Oisy Wallet to proceed.</p>
-  <button id="login">Login with Oisy Wallet</button>
+  <div id="login-section">
+    <h1>✅ Check Vero Demo</h1>
+    <p>Connect your Oisy Wallet to access the live demo.</p>
+    <button id="login">Login with Oisy Wallet</button>
+  </div>
+
+  <div id="demo-section" style="display:none;">
+    <h2>🔒 Verified Access Granted</h2>
+    <p>You are now viewing the live demo:</p>
+    <iframe 
+      src="https://callverify.preview.emergentagent.com/" 
+      width="90%" 
+      height="600px"
+      title="Check Vero Agent Demo"
+    ></iframe>
+  </div>
 </body>
 </html>
