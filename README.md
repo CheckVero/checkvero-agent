@@ -1,3 +1,9 @@
+⚠️ Archived repository
+
+This repository contains early exploratory work and is no longer maintained.
+It does not represent the current Check Vero product or architecture.
+
+
 # ✅ Check Vero Agent — Public Signal Verification Interface
 
 This is the web-based agent interface for Check Vero — the AI-native trust layer for digital communication.
